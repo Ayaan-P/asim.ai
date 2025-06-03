@@ -1,6 +1,8 @@
 # Asimbot: WhatsApp Text Generation Model
 
 This project aims to create a text generation model fine-tuned on WhatsApp chat data to mimic a specific individual's (Asim's) texting style.
+DISCLAIMER: There may be some offensive outputs given the input data being unfiltered group chats. Neither Asim or I are responsible for the example outputs generated. 
+The dataset used for the RL step is included. This includes around ~1000 example prompts with 3 outputs each. Along with the Gemini Flash ranking of each output.
 
 ## Project Journey: Fine-Tuning a Model on a Friend’s Chat Style
 
