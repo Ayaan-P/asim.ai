@@ -16,30 +16,29 @@ from transformers import (
 from peft import LoraConfig, get_peft_model
 
 p = argparse.ArgumentParser()
-p.add_argument("--model_name", default="./resized_gemma")   # folder or HF hub id
-p.add_argument("--data_path",  default="dataset.jsonl")     # JSON‑lines with "text"
+p.add_argument("--data_path",  default="dataset.jsonl")     
 p.add_argument("--out_dir",    default="./results_asim_lora")
 p.add_argument("--epochs",     type=int,   default=3)
 p.add_argument("--batch",      type=int,   default=1)
 p.add_argument("--grad_acc",   type=int,   default=4)
-p.add_argument("--block",      type=int,   default=512)     # max seq length
+p.add_argument("--block",      type=int,   default=512)     
 p.add_argument("--lr",         type=float, default=2e-4)
 cfg = p.parse_args()
-
+#resize  to add special tokens
 SPECIAL = ["<USR_A>", "<USR_B>", "<USR_C>", "<SYS>", "<SEP>"]
 
 tokenizer = AutoTokenizer.from_pretrained(cfg.model_name, use_fast=True)
 tokenizer.add_special_tokens({"additional_special_tokens": SPECIAL})
-if tokenizer.pad_token is None:                           # Gemma has no PAD
+if tokenizer.pad_token is None:                           
     tokenizer.pad_token = tokenizer.eos_token
 
-SYS_ID = tokenizer.convert_tokens_to_ids("<SYS>")         # used in encode()
+SYS_ID = tokenizer.convert_tokens_to_ids("<SYS>")         
 
 model = AutoModelForCausalLM.from_pretrained(
     cfg.model_name, torch_dtype=torch.bfloat16
 )
-model.resize_token_embeddings(len(tokenizer))             # NEW vocab length
-model.config.use_cache = False                            # essential for LoRA
+model.resize_token_embeddings(len(tokenizer))             
+model.config.use_cache = False                            
 
 ds = load_dataset("json", data_files={"train": cfg.data_path})["train"]
 
