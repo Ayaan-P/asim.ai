@@ -142,17 +142,7 @@ if __name__ == "__main__":
 
     prompts = [
         "What are you doing this weekend?",
-        "What do you think about sydney sweeney soap?",
-        "Are you going to fail nlp?",
-        "What do you think about the genai project?",
-        "Squash or tennis?",
-        "brain rot",
-        "Who said it was Tuesday?",
-        "100 men or 1 gorilla?",
-        "Wait do any of you guys like star wars?",
-        "why do you need to get a gun?",
-        "ballerina cappuccina or cappuccino assassino?",
-        "did you use gpt for your genai project"
+       
     ]
 
     all_generated_output = ""
