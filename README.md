@@ -11,6 +11,11 @@ Example snippet of the the final dataset:
 {"text": "<USR_A> Inspite of the lock? <USR_A> That's crazy <USR_A> Rip scooter <USR_A> I mean there's no VIN as such <SYS> Yeah that’s true"}
 {"text": "<USR_A> Lasted less than a month <USR_A> Can't really do much <USR_A> The one that got stolen <USR_A> Not a scam site it seems <SYS> Bro but this is ridiculous"}
 
+Potential Extra criteria 
+
+- Model data parallelism, i ran the training on 2 a100s for no particular reason other than to try it out. Huggingface accelerate splits the dataset onto two gpus
+- RL experiments
+
 ## Project Journey: Fine-Tuning a Model on a Friend’s Chat Style
 
 This section outlines the development process, challenges, and key learnings from building the Asimbot model.
